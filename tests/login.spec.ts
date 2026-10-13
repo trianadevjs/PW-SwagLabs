@@ -1,6 +1,6 @@
 import test, { Browser, expect, Page } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { HomePage } from '../pages/HomePage';
+import { LoginPage } from './pages/LoginPage';
+import { HomePage } from './pages/HomePage';
 
 (async() => {
     let browser: Browser;
@@ -18,7 +18,7 @@ import { HomePage } from '../pages/HomePage';
                 await test.step('El usuario accede a la página principal y logra ver el titulo "SwagLabs"', async () => {
                     await page.goto('/');
                     await loginPage.login(user.user, user.password);
-                    await expect(homePage.productsTitle).toBeVisible();
+                    await expect(homePage.productsTitle, 'El Titulo de "Productos" no es correcto').toHaveText('Products');
                 });
             });
         }
