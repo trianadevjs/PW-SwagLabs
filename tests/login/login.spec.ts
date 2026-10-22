@@ -25,6 +25,21 @@ test.describe('Login', {
             await expect(inventoryPage.productsTitle).toHaveText('Products');
         });
 
+        test('AUTH-011.- should redirect to login page when I logout', async ({ page }) => {
+            const loginPage = new LoginPage(page);
+            const inventoryPage = new InventoryPage(page);
+
+            await page.goto('/');
+
+            await loginPage.login();
+            await expect(inventoryPage.productsTitle).toBeVisible();
+            await inventoryPage.logout();
+
+            await expect(page).toHaveURL('https://www.saucedemo.com/');
+            await expect(loginPage.swaglabsTitle).toBeVisible();
+            await expect(loginPage.swaglabsTitle).toHaveText('Swag Labs');
+        });
+
         test.describe('AUTH-009.-Login with special users credentials', {
             tag: ['@special']
         }, () => {
