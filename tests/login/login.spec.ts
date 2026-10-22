@@ -1,6 +1,6 @@
 import test, { Browser, expect, Page } from '@playwright/test';
-import { LoginPage } from './pages/LoginPage';
-import { HomePage } from './pages/HomePage';
+import { LoginPage } from '../pages/LoginPage';
+import { HomePage } from '../pages/HomePage';
 
 (async() => {
     let browser: Browser;
